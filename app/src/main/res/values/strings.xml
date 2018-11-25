@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="title_activity_android_select_image">AndroidSelectImage</string>
+    <string name="openGalleryBtn">เลือกรูปจากคลังภาพ</string>
+    <string name="nameLabel">ชื่อ</string>
+    <string name="add_member_btn_text">เพิ่ม</string>
+    <string name="cancel_add_member_btn_text">ยกเลิก</string>
+    <string name="view_member_btn_text">ดูสมาชิก</string>
 </resources>

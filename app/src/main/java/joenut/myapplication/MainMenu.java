@@ -14,6 +14,7 @@ public class MainMenu extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
         Button btn1 = findViewById(R.id.button1);
         Button btn2= findViewById(R.id.button2);
+        Button viewMemberBtn = (Button) findViewById(R.id.view_member_btn);
 
 
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -34,11 +35,14 @@ public class MainMenu extends AppCompatActivity {
 
             }
         });
+
+        viewMemberBtn.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new  Intent(MainMenu.this,FamilyMemberActivity.class);
+                startActivity(intent);
+            }
+        });
     }
-
-
-    //Test
-    //Test2
-
 
 }

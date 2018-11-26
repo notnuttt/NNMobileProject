@@ -1,4 +1,4 @@
 package joenut.myapplication;
 
-public class PersonListAdapter {
+public class DatabaseException {
 }

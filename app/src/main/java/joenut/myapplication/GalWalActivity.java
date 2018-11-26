@@ -35,6 +35,7 @@ public class GalWalActivity extends AppCompatActivity {
         photoName = (EditText) findViewById(R.id.photoName);
         Button openGallery = (Button) findViewById(R.id.opengallery);
         Button addMemberBtn = (Button) findViewById(R.id.add_member_btn);
+        Button cancleBtn = (Button) findViewById(R.id.cancel_add_member_btn);
         db = new Database(this);
 
         openGallery.setOnClickListener(new View.OnClickListener() {
@@ -53,11 +54,18 @@ public class GalWalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (db.insertImage(cImagePath, cPersonName)){
-                    Toast.makeText(getApplicationContext(), "Successful!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "เพิ่มข้อมูลแล้ว :)",Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(getApplicationContext(), "Not successful!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "เพิ่มข้อมูลไม่สำเร็จ :'(",Toast.LENGTH_SHORT).show();
                 }
             }
+        });
+        cancleBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+
         });
 
     }
@@ -72,7 +80,6 @@ public class GalWalActivity extends AppCompatActivity {
             cImagePath = path;
             String name = photoName.getText().toString();
             cPersonName = name;
-            Toast.makeText(getApplicationContext(), path,Toast.LENGTH_SHORT).show();
             File imgFile = new  File(path);
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             selectedImage.setImageBitmap(myBitmap);
@@ -93,6 +100,5 @@ public class GalWalActivity extends AppCompatActivity {
         return uri.getPath();
 
     }
-
 
 }

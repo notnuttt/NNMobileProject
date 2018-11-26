@@ -23,13 +23,14 @@ public class EndGameDialog extends Dialog implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.result_dialog);
+        setContentView(R.layout.end_game_dialog);
+
         Button endGame_btn = (Button) findViewById(R.id.btn_end_game_score);
 
         endGame_btn.setOnClickListener(this);
 
         TextView tx_score = (TextView) findViewById(R.id.txtv_score);
-        tx_score.setText(score);
+        tx_score.setText(score+"");
     }
 
     @Override

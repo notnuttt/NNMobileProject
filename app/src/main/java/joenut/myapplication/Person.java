@@ -13,7 +13,11 @@ public class Person {
         this.image = image;
     }
 
-    public String getName() {
+    public Person(String name) {
+        this.name = name;
+    }
+
+        public String getName() {
         return name;
     }
 

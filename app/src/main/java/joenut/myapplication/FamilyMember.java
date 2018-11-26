@@ -19,7 +19,5 @@ public class FamilyMember extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_family_member);
 
-
-
     }
 }

@@ -35,7 +35,7 @@ public class GalWalActivity extends AppCompatActivity {
         photoName = (EditText) findViewById(R.id.photoName);
         Button openGallery = (Button) findViewById(R.id.opengallery);
         Button addMemberBtn = (Button) findViewById(R.id.add_member_btn);
-        Button cancleBtn = (Button) findViewById(R.id.cancel_add_member_btn);
+        Button cancelBtn = (Button) findViewById(R.id.cancel_add_member_btn);
         db = new Database(this);
 
         openGallery.setOnClickListener(new View.OnClickListener() {
@@ -53,14 +53,15 @@ public class GalWalActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                cPersonName = photoName.getText().toString();
                 if (db.insertImage(cImagePath, cPersonName)){
-                    Toast.makeText(getApplicationContext(), "เพิ่มข้อมูลแล้ว :)",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "เพิ่มข้อมูลของ " + cPersonName + " แล้ว :)",Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(getApplicationContext(), "เพิ่มข้อมูลไม่สำเร็จ :'(",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "เพิ่มข้อมูลของ " + cPersonName + " ไม่สำเร็จ :'(",Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        cancleBtn.setOnClickListener(new View.OnClickListener(){
+        cancelBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 finish();
@@ -78,8 +79,6 @@ public class GalWalActivity extends AppCompatActivity {
             Uri uri = data.getData();
             String path = getPath(uri);
             cImagePath = path;
-            String name = photoName.getText().toString();
-            cPersonName = name;
             File imgFile = new  File(path);
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             selectedImage.setImageBitmap(myBitmap);

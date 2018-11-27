@@ -38,6 +38,7 @@ public class SpeechToText extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         familyList = new ArrayList<>();
+        cPerson = new Person("null");
 
         Database db = new Database(SpeechToText.this);
         propic = (ImageView) findViewById(R.id.imageView2);
@@ -96,7 +97,7 @@ public class SpeechToText extends AppCompatActivity {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     String regText = result.get(0);
                     mVoiceInputTv.setText(regText);
-                    cheackResult(cPerson.getName(), regText);
+                    cheackResult(result, cPerson.getName());
                 }
                 break;
             }
@@ -123,18 +124,28 @@ public class SpeechToText extends AppCompatActivity {
     }
 
     private void setNextTurn(Person person){
-        Person p = person;
         cPerson = person;
-        byte[] img = p.getImage();
+        byte[] img = cPerson.getImage();
         Bitmap bmp = BitmapFactory.decodeByteArray(img, 0, img.length);
         propic.setImageBitmap(Bitmap.createScaledBitmap(bmp,
                 (int) getResources().getDimension(R.dimen.imageview_width),
                 (int) getResources().getDimension(R.dimen.imageview_height), false));
+        Toast.makeText(getApplicationContext(), cPerson.getName(),Toast.LENGTH_SHORT).show();
     }
 
-    private void cheackResult(String regconStr, String name){
+    private void cheackResult(ArrayList<String> regconStr, String name){
         ResultDialog rd;
-        if(regconStr.equals(name)){
+        boolean isCorrect = false;
+        String a = "REGC: ";
+        for(String x: regconStr){
+            if(x.equals(name))
+                isCorrect = true;
+
+            a += " " + x;
+        }
+        Toast.makeText(getApplicationContext(), a + " Name:" + name,Toast.LENGTH_SHORT).show();
+
+        if(isCorrect){
             score++;
              rd = new ResultDialog(SpeechToText.this, true);
         }else{
